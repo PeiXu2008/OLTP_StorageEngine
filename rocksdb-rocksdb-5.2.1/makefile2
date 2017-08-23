@@ -1,0 +1,4 @@
+FLAG=-std=c++11
+LIB=-L/usr/local/lib/ -lrocksdb -lpthread -lz -lbz2 -lsnappy
+test1:rocksdb1.cc
+	g++ $(FLAG) $< $(LIB) -o $@
