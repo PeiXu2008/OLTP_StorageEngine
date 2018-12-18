@@ -376,6 +376,7 @@ int main(int argc, char* argv[])
 	err = iterate(crsr, NULL, print_lt_5);
 	assert(err == DB_SUCCESS);
 
+
 	/*==========================================*/
 	err = ib_cursor_close(crsr);
 	assert(err == DB_SUCCESS);
