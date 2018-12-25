@@ -2,11 +2,17 @@
 This is an OLTP storage engine which is a copy of embedded innodb. Now there is no open source innodb without mysql. One can use this version to construct your own OLTP storage.
 
 $./confugure
+
 $make -j8
+
 $make install
+
 Enter to the tests and run the executable files, just like:
+
 $./ib_test1
+
 , and the result like this:
+
 API: 3.0.0
 InnoDB: Mutexes and rw_locks use GCC atomic builtins
 InnoDB: The first specified data file ./ibdata1 did not exist:
