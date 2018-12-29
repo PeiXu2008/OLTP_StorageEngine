@@ -2601,8 +2601,8 @@ ib_create_primary_index(
 {
 	ib_err_t	err;
 	mem_heap_t*	heap;
-	const index_def_t*
-			index_def;
+	//const index_def_t* 			index_def;
+	
 	dict_table_t*	new_table = NULL;
 	ib_index_def_t*	ib_index_def = (ib_index_def_t*) ib_idx_sch;
 	trx_t*		usr_trx = ib_index_def->usr_trx;
@@ -2631,7 +2631,7 @@ ib_create_primary_index(
 	ut_a(!ib_vector_is_empty(ib_index_def->cols));
 
 	/* Set the CLUSTERED flag to TRUE. */
-	index_def = ib_copy_index_definition(ib_index_def, TRUE);
+	//index_def = ib_copy_index_definition(ib_index_def, TRUE);
 
 	err = ib_trx_lock_table_with_retry(usr_trx, table, LOCK_X);
 
@@ -5463,7 +5463,7 @@ ib_table_lock(
 		return(DB_TABLE_NOT_FOUND);
 	}
 
-	ut_a(ib_lck_mode <= LOCK_NUM);
+	//ut_a(ib_lck_mode <= LOCK_NUM);
 
 	heap = mem_heap_create(128);
 
@@ -5497,7 +5497,7 @@ ib_cursor_unlock(
 /*=============*/
 	ib_crsr_t	ib_crsr)	/*!< in/out: InnoDB cursor */
 {
-	ib_err_t	err;
+	//ib_err_t	err;
 	ib_cursor_t*	cursor = (ib_cursor_t*) ib_crsr;
 	row_prebuilt_t*	prebuilt = cursor->prebuilt;
 
@@ -5506,7 +5506,7 @@ ib_cursor_unlock(
 	if (prebuilt->trx->client_n_tables_locked > 0) {
 		--prebuilt->trx->client_n_tables_locked;
 	} else {
-		err = DB_ERROR;
+		return(DB_ERROR);
 	}
 
 	return(DB_SUCCESS);
@@ -5528,7 +5528,7 @@ ib_cursor_set_lock_mode(
 
 	UT_DBG_ENTER_FUNC;
 
-	ut_a(ib_lck_mode <= LOCK_NUM);
+	//ut_a(ib_lck_mode <= LOCK_NUM);
 
 	if (ib_lck_mode == IB_LOCK_X) {
 		err = ib_cursor_lock(ib_crsr, IB_LOCK_IX);
