@@ -71,7 +71,7 @@ row_vers_impl_x_locked_off_kernel(
 					warning */
 	trx_t*		trx;
 	ulint		rec_del;
-	ulint		err;
+	//ulint		err;
 	mtr_t		mtr;
 	ulint		comp;
 
@@ -169,7 +169,7 @@ row_vers_impl_x_locked_off_kernel(
 
 		heap2 = heap;
 		heap = mem_heap_create(1024);
-		err = trx_undo_prev_version_build(clust_rec, &mtr, version,
+		trx_undo_prev_version_build(clust_rec, &mtr, version,
 						  clust_index, clust_offsets,
 						  heap, &prev_version);
 		mem_heap_free(heap2); /* free version and clust_offsets */
@@ -187,7 +187,7 @@ row_vers_impl_x_locked_off_kernel(
 			/* If the transaction is still active,
 			clust_rec must be a fresh insert, because no
 			previous version was found. */
-			ut_ad(err == DB_SUCCESS);
+			//ut_ad(err == DB_SUCCESS);
 
 			/* It was a freshly inserted version: there is an
 			implicit x-lock on rec */
@@ -243,7 +243,7 @@ row_vers_impl_x_locked_off_kernel(
 		/* The previous version of clust_rec must be
 		accessible, because the transaction is still active
 		and clust_rec was not a fresh insert. */
-		ut_ad(err == DB_SUCCESS);
+		//ut_ad(err == DB_SUCCESS);
 
 		/* We check if entry and rec are identified in the alphabetical
 		ordering */

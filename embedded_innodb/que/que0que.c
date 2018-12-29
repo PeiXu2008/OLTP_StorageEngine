@@ -1276,7 +1276,7 @@ que_run_threads_low(
 	que_thr_t*	thr)	/*!< in: query thread */
 {
 	que_thr_t*	next_thr;
-	ulint		cumul_resource;
+	//ulint		cumul_resource;
 	ulint		loop_count;
 
 	ut_ad(thr->state == QUE_THR_RUNNING);
@@ -1287,7 +1287,7 @@ que_run_threads_low(
 	query thread) has spent in this function */
 
 	loop_count = QUE_MAX_LOOPS_WITHOUT_CHECK;
-	cumul_resource = 0;
+	//cumul_resource = 0;
 loop:
 	/* Check that there is enough space in the log to accommodate
 	possible log entries by this query step; if the operation can touch

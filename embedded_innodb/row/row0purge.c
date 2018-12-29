@@ -677,7 +677,7 @@ row_purge_step(
 	que_thr_t*	thr)	/*!< in: query thread */
 {
 	purge_node_t*	node;
-	ulint		err;
+	//ulint		err;
 
 	ut_ad(thr);
 
@@ -685,9 +685,7 @@ row_purge_step(
 
 	ut_ad(que_node_get_type(node) == QUE_NODE_PURGE);
 
-	err = row_purge(node, thr);
-
-	ut_ad(err == DB_SUCCESS);
+	row_purge(node, thr);
 
 	return(thr);
 }

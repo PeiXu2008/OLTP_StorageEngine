@@ -233,7 +233,7 @@ trx_sys_create_doublewrite_buf(void)
 {
 	buf_block_t*	block;
 	buf_block_t*	block2;
-	buf_block_t*	new_block;
+	//buf_block_t*	new_block;
 	byte*	doublewrite;
 	byte*	fseg_header;
 	ulint	page_no;
@@ -336,12 +336,12 @@ start_again:
 			space id and page number in them are the same as
 			the page position in the tablespace, then the page
 			has not been written to in doublewrite. */
-
+/**
 			new_block = buf_page_get(TRX_SYS_SPACE, 0, page_no,
 						 RW_X_LATCH, &mtr);
 			buf_block_dbg_add_level(new_block,
 						SYNC_NO_ORDER_CHECK);
-
+**/
 			if (i == FSP_EXTENT_SIZE / 2) {
 				ut_a(page_no == FSP_EXTENT_SIZE);
 				mlog_write_ulint(doublewrite

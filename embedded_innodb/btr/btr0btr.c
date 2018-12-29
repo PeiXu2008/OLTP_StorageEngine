@@ -1904,7 +1904,11 @@ btr_page_split_and_insert(
 	buf_block_t*	left_block;
 	buf_block_t*	right_block;
 	buf_block_t*	insert_block;
+#ifdef WITH_ZIP
+#ifdef UNIV_ZIP_DEBUG
 	page_t*		insert_page;
+#endif /* UNIV_ZIP_DEBUG */
+#endif /* WITH_ZIP */
 	page_cur_t*	page_cursor;
 	rec_t*		first_rec;
 	byte*		buf = 0; /* remove warning */
@@ -2177,9 +2181,11 @@ insert_right:
 	} else {
 		insert_block = right_block;
 	}
-
+#ifdef WITH_ZIP
+#ifdef UNIV_ZIP_DEBUG
 	insert_page = buf_block_get_frame(insert_block);
-
+#endif /* UNIV_ZIP_DEBUG */
+#endif /* WITH_ZIP */
 	/* 7. Reposition the cursor for insert and try insertion */
 	page_cursor = btr_cur_get_page_cur(cursor);
 
@@ -2592,7 +2598,7 @@ btr_compress(
 	ulint		n_recs;
 	ulint		max_ins_size;
 	ulint		max_ins_size_reorg;
-	ulint		level;
+	//ulint		level;
 
 	block = btr_cur_get_block(cursor);
 	page = btr_cur_get_page(cursor);
@@ -2602,7 +2608,7 @@ btr_compress(
 	ut_ad(mtr_memo_contains(mtr, dict_index_get_lock(index),
 				MTR_MEMO_X_LOCK));
 	ut_ad(mtr_memo_contains(mtr, block, MTR_MEMO_PAGE_X_FIX));
-	level = btr_page_get_level(page, mtr);
+	//level = btr_page_get_level(page, mtr);
 	space = dict_index_get_space(index);
 	zip_size = dict_table_zip_size(index->table);
 

@@ -104,14 +104,12 @@ row_undo_mod_clust_low(
 	btr_pcur_t*	pcur;
 	btr_cur_t*	btr_cur;
 	ulint		err;
-	ibool		success;
+	//ibool		success;
 
 	pcur = &(node->pcur);
 	btr_cur = btr_pcur_get_btr_cur(pcur);
 
-	success = btr_pcur_restore_position(mode, pcur, mtr);
-
-	ut_ad(success);
+	btr_pcur_restore_position(mode, pcur, mtr);
 
 	if (mode == BTR_MODIFY_LEAF) {
 

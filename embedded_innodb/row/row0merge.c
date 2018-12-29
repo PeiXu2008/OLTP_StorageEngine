@@ -432,16 +432,16 @@ row_merge_dup_report(
 	row_merge_dup_t*	dup,	/*!< in/out: for reporting duplicates */
 	const dfield_t*		entry)	/*!< in: duplicate index entry */
 {
-	mrec_buf_t 		buf;
-	const dtuple_t*		tuple;
-	dtuple_t		tuple_store;
-	const rec_t*		rec;
-	const dict_index_t*	index	= dup->index;
-	ulint			n_fields= dict_index_get_n_fields(index);
+	//mrec_buf_t 		buf;
+	//const dtuple_t*		tuple;
+	//dtuple_t		tuple_store;
+	//const rec_t*		rec;
+	//const dict_index_t*	index	= dup->index;
+	//ulint			n_fields= dict_index_get_n_fields(index);
 	mem_heap_t*		heap	= NULL;
 	ulint			offsets_[REC_OFFS_NORMAL_SIZE];
-	ulint*			offsets;
-	ulint			n_ext;
+	//ulint*			offsets;
+	//ulint			n_ext;
 
 	if (dup->n_dup++) {
 		/* Only report the first duplicate record,
@@ -453,12 +453,11 @@ row_merge_dup_report(
 
 	/* Convert the tuple to a record and then to client format. */
 
-	tuple = dtuple_from_fields(&tuple_store, entry, n_fields);
-	n_ext = dict_index_is_clust(index) ? dtuple_get_n_ext(tuple) : 0;
+	//tuple = dtuple_from_fields(&tuple_store, entry, n_fields);
+	//n_ext = dict_index_is_clust(index) ? dtuple_get_n_ext(tuple) : 0;
 
-	rec = rec_convert_dtuple_to_rec(buf, index, tuple, n_ext);
-	offsets = rec_get_offsets(rec, index, offsets_, ULINT_UNDEFINED,
-				  &heap);
+	//rec = rec_convert_dtuple_to_rec(buf, index, tuple, n_ext);
+	//offsets = rec_get_offsets(rec, index, offsets_, ULINT_UNDEFINED, &heap);
 
 	if (UNIV_LIKELY_NULL(heap)) {
 		mem_heap_free(heap);

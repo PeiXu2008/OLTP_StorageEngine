@@ -315,9 +315,9 @@ trx_purge_add_update_undo_to_history(
 	trx_undo_t*	undo;
 	trx_rseg_t*	rseg;
 	trx_rsegf_t*	rseg_header;
-	trx_usegf_t*	seg_header;
+	//trx_usegf_t*	seg_header;
 	trx_ulogf_t*	undo_header;
-	trx_upagef_t*	page_header;
+	//trx_upagef_t*	page_header;
 	ulint		hist_size;
 
 	undo = trx->update_undo;
@@ -332,8 +332,8 @@ trx_purge_add_update_undo_to_history(
 				    rseg->page_no, mtr);
 
 	undo_header = undo_page + undo->hdr_offset;
-	seg_header  = undo_page + TRX_UNDO_SEG_HDR;
-	page_header = undo_page + TRX_UNDO_PAGE_HDR;
+	//seg_header  = undo_page + TRX_UNDO_SEG_HDR;
+	//page_header = undo_page + TRX_UNDO_PAGE_HDR;
 
 	if (undo->state != TRX_UNDO_CACHED) {
 		/* The undo log segment will not be reused */
@@ -349,8 +349,7 @@ trx_purge_add_update_undo_to_history(
 
 		hist_size = mtr_read_ulint(rseg_header + TRX_RSEG_HISTORY_SIZE,
 					   MLOG_4BYTES, mtr);
-		ut_ad(undo->size == flst_get_len(
-			      seg_header + TRX_UNDO_PAGE_LIST, mtr));
+		//ut_ad(undo->size == flst_get_len(seg_header + TRX_UNDO_PAGE_LIST, mtr));
 
 		mlog_write_ulint(rseg_header + TRX_RSEG_HISTORY_SIZE,
 				 hist_size + undo->size, MLOG_4BYTES, mtr);
@@ -666,7 +665,7 @@ trx_purge_rseg_get_next_history_log(
 {
 	page_t*		undo_page;
 	trx_ulogf_t*	log_hdr;
-	trx_usegf_t*	seg_hdr;
+	//trx_usegf_t*	seg_hdr;
 	fil_addr_t	prev_log_addr;
 	trx_id_t	trx_no;
 	ibool		del_marks;
@@ -687,7 +686,7 @@ trx_purge_rseg_get_next_history_log(
 	undo_page = trx_undo_page_get_s_latched(rseg->space, rseg->zip_size,
 						rseg->last_page_no, &mtr);
 	log_hdr = undo_page + rseg->last_offset;
-	seg_hdr = undo_page + TRX_UNDO_SEG_HDR;
+	//seg_hdr = undo_page + TRX_UNDO_SEG_HDR;
 
 	/* Increase the purge page count by one for every handled log */
 
@@ -1080,11 +1079,11 @@ trx_purge_rec_release(
 /*==================*/
 	trx_undo_inf_t*	cell)	/*!< in: storage cell */
 {
-	trx_undo_arr_t*	arr;
+	//trx_undo_arr_t*	arr;
 
 	mutex_enter(&(purge_sys->mutex));
 
-	arr = purge_sys->arr;
+	//arr = purge_sys->arr;
 
 	trx_purge_arr_remove_info(cell);
 

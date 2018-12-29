@@ -613,7 +613,7 @@ dict_create_index_tree_step(
 {
 	dict_index_t*	index;
 	dict_table_t*	sys_indexes;
-	dict_table_t*	table;
+	//dict_table_t*	table;
 	dtuple_t*	search_tuple;
 	ulint		zip_size;
 	btr_pcur_t	pcur;
@@ -622,7 +622,7 @@ dict_create_index_tree_step(
 	ut_ad(mutex_own(&(dict_sys->mutex)));
 
 	index = node->index;
-	table = node->table;
+	//table = node->table;
 
 	sys_indexes = dict_sys->sys_indexes;
 
@@ -1121,7 +1121,7 @@ dict_create_index_step(
 					      FIL_NULL, TRUE);
 
 		node->index = dict_index_get_if_in_cache_low(index_id);
-		ut_a(!node->index == (err != DB_SUCCESS));
+		ut_a((!node->index) == (err != DB_SUCCESS));
 
 		if (err != DB_SUCCESS) {
 

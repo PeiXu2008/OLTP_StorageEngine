@@ -1891,7 +1891,7 @@ btr_cur_optimistic_update(
 	page_t*		page;
 	page_zip_des_t*	page_zip;
 	rec_t*		rec;
-	rec_t*		orig_rec;
+	//rec_t*		orig_rec;
 	ulint		max_size;
 	ulint		new_rec_size;
 	ulint		old_rec_size;
@@ -1905,7 +1905,8 @@ btr_cur_optimistic_update(
 
 	block = btr_cur_get_block(cursor);
 	page = buf_block_get_frame(block);
-	orig_rec = rec = btr_cur_get_rec(cursor);
+	rec = btr_cur_get_rec(cursor);
+	//orig_rec = rec = btr_cur_get_rec(cursor);
 	index = cursor->index;
 	ut_ad(!!page_rec_is_comp(rec) == dict_table_is_comp(index->table));
 	ut_ad(mtr_memo_contains(mtr, block, MTR_MEMO_PAGE_X_FIX));
@@ -4374,11 +4375,11 @@ btr_free_externally_stored_field(
 #endif /* WITH_ZIP */
 
 	for (;;) {
-		buf_block_t*	rec_block;
+		//buf_block_t*	rec_block;
 		buf_block_t*	ext_block;
 
 		mtr_start(&mtr);
-
+/**
 		rec_block = buf_page_get(page_get_space_id(
 						 page_align(field_ref)),
 					 rec_zip_size,
@@ -4386,6 +4387,7 @@ btr_free_externally_stored_field(
 						 page_align(field_ref)),
 					 RW_X_LATCH, &mtr);
 		buf_block_dbg_add_level(rec_block, SYNC_NO_ORDER_CHECK);
+**/		
 		page_no = mach_read_from_4(field_ref + BTR_EXTERN_PAGE_NO);
 
 		if (/* There is no external storage data */

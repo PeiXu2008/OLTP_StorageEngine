@@ -1498,8 +1498,8 @@ try_again:
 	int		create_flag;
 	ibool		retry;
 	const char*	mode_str	= NULL;
-	const char*	type_str	= NULL;
-	const char*	purpose_str	= NULL;
+	//const char*	type_str	= NULL;
+	//const char*	purpose_str	= NULL;
 
 try_again:
 	ut_a(name);
@@ -1518,7 +1518,7 @@ try_again:
 		create_flag = 0;
 		ut_error;
 	}
-
+/**
 	if (type == OS_LOG_FILE) {
 		type_str = "LOG";
 	} else if (type == OS_DATA_FILE) {
@@ -1534,6 +1534,7 @@ try_again:
 	} else {
 		ut_error;
 	}
+**/
 
 #if 0
 	ib_logger(ib_stream, "Opening file %s, mode %s, type %s, purpose %s\n",
